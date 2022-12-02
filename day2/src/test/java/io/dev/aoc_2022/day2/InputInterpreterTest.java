@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static io.dev.aoc_2022.day2.RockPaperScissor.*;
+import static io.dev.aoc_2022.day2.RockPaperScissors.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class InputInterpreterTest {
@@ -42,7 +42,7 @@ public class InputInterpreterTest {
 
     @ParameterizedTest(name = "{index} With desired outcome {1}, and opponent {0}, I should play {2}")
     @MethodSource("generateDetermineMineInputs")
-    void determineMine(RockPaperScissor opponent, String desiredOutcome, RockPaperScissor iPlay) {
+    void determineMine(RockPaperScissors opponent, String desiredOutcome, RockPaperScissors iPlay) {
         assertThat(InputInterpreter.determineMine(opponent, desiredOutcome)).isEqualTo(iPlay);
     }
 

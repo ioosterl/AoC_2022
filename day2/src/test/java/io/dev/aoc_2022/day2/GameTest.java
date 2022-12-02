@@ -7,14 +7,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static io.dev.aoc_2022.day2.Outcome.*;
-import static io.dev.aoc_2022.day2.RockPaperScissor.*;
+import static io.dev.aoc_2022.day2.RockPaperScissors.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameTest {
 
     @ParameterizedTest(name="{index} Their {0} vs my {1} results in {2}")
     @MethodSource("provideGameOptions")
-    void gameVariants(RockPaperScissor opponent, RockPaperScissor mine, Outcome expectedOutcome) {
+    void gameVariants(RockPaperScissors opponent, RockPaperScissors mine, Outcome expectedOutcome) {
         assertThat(Game.play(opponent, mine)).isEqualTo(expectedOutcome);
     }
 
@@ -36,7 +36,7 @@ public class GameTest {
 
     @ParameterizedTest(name="{index} Played {0} and {1} gives a score of {2}")
     @MethodSource("provideScoringVarients")
-    void gameVariants(RockPaperScissor played, Outcome outcome, Integer expectedScore) {
+    void gameVariants(RockPaperScissors played, Outcome outcome, Integer expectedScore) {
         assertThat(Game.score(played, outcome)).isEqualTo(expectedScore);
     }
 

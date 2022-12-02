@@ -30,15 +30,15 @@ public class Day2 {
 
     public static Integer partA(String line) {
         String[] parts = line.split(" ");
-        RockPaperScissor mine = InputInterpreter.interpretMine(parts[1]);
+        RockPaperScissors mine = InputInterpreter.interpretMine(parts[1]);
         Outcome outcome = Game.play(InputInterpreter.interpretOpponent(parts[0]), mine);
         return Game.score(mine, outcome);
     }
 
     public static Integer partB(String line) {
         String[] parts = line.split(" ");
-        RockPaperScissor opponent = InputInterpreter.interpretOpponent(parts[0]);
-        RockPaperScissor mine = InputInterpreter.determineMine(opponent, parts[1]);
+        RockPaperScissors opponent = InputInterpreter.interpretOpponent(parts[0]);
+        RockPaperScissors mine = InputInterpreter.determineMine(opponent, parts[1]);
         Outcome outcome = Game.play(opponent, mine);
         return Game.score(mine, outcome);
     }
