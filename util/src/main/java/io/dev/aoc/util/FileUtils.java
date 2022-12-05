@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -19,6 +20,17 @@ public class FileUtils {
             return linesProcessor.apply(lines);
 
         }catch (IOException e) {
+            throw new IllegalArgumentException("Could not process file " + filenameOnClasspath, e);
+        }
+    }
+
+    public static void consumeLinesFromStream(String filenameOnClasspath, Consumer<String> lineConsumer) {
+        try (Stream<String> lines =
+                     Files.lines(
+                             getNullSafePath(filenameOnClasspath))) {
+            lines.forEach(lineConsumer);
+
+        } catch (IOException e) {
             throw new IllegalArgumentException("Could not process file " + filenameOnClasspath, e);
         }
     }
