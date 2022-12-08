@@ -73,7 +73,7 @@ public class Day8 {
 
     public static void main(String[] args) {
         System.out.println("Part A: " + partA("day8.txt"));
-        System.out.println("Part B: " + partB("day8.txt")); //526400 too low
+        System.out.println("Part B: " + partB("day8.txt"));
     }
 
     public static long partB(String filename) {
