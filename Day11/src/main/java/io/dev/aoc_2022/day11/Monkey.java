@@ -8,16 +8,16 @@ import java.util.function.Predicate;
 
 public class Monkey {
 
-    private final Function<Integer, Integer> worryLevelEvolvler;
+    private final Function<Long, Long> worryLevelEvolvler;
 
-    private final Predicate<Integer> test;
+    private final Predicate<Long> test;
     private Monkey trueMonkey, falseMonkey;
 
-    private final List<Integer> items = new LinkedList<>();
+    private final List<Long> items = new LinkedList<>();
 
     private long numberOfInspections;
 
-    public Monkey(Function<Integer, Integer> worryLevelEvolvler, Predicate<Integer> test, List<Integer> items) {
+    public Monkey(Function<Long, Long> worryLevelEvolvler, Predicate<Long> test, List<Long> items) {
         this.worryLevelEvolvler = worryLevelEvolvler;
         this.test = test;
         this.items.addAll(items);
@@ -28,18 +28,18 @@ public class Monkey {
         this.falseMonkey = falseMonkey;
     }
 
-    void playRound() {
+    void playRound(Function<Long, Long> reducer) {
         numberOfInspections += items.size();
 
         items.stream()
                 .map(worryLevelEvolvler)
-                .map(w -> w/3)
+                .map(reducer)
                 .forEach(this::throwItem);
 
         items.clear();
     }
 
-    void throwItem(Integer item) {
+    void throwItem(Long item) {
         if(test.test(item)) {
             trueMonkey.catchItem(item);
         } else {
@@ -47,7 +47,7 @@ public class Monkey {
         }
     }
 
-    public void catchItem(Integer item) {
+    public void catchItem(Long item) {
         items.add(item);
     }
 
